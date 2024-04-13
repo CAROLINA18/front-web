@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>Inicio de sesión</h1>
+    <form (ngSubmit)="submitForm(loginForm)" #loginForm="ngForm">
+      <div class="input-group">
+        <label for="username">Usuario*</label>      
+        <input type="text" id="username" name="username" [(ngModel)]="userData.username" required pattern="[a-zA-Z0-9]{1,20}" (keypress)="preventWhitespace($event)" required>
+        <div *ngIf="loginForm.controls['username']?.invalid && (loginForm.controls['username']?.dirty || loginForm.controls['username']?.touched)">
+          <div *ngIf="loginForm.controls['username']?.errors?.required">El campo usuario es requerido.</div>
+          <div *ngIf="loginForm.controls['username']?.errors?.pattern">El usuario debe contener solo letras y números, máximo 20 caracteres.</div>
+          
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="password">Clave*</label>      
+        <input type="password" id="password" name="password" [(ngModel)]="userData.password" required pattern="[a-zA-Z0-9]{1,20}" (keypress)="preventWhitespace($event)" required>
+        <div *ngIf="loginForm.controls['password']?.invalid && (loginForm.controls['password']?.dirty || loginForm.controls['password']?.touched)">
+          <div *ngIf="loginForm.controls['password']?.errors?.required">El campo clave es requerido.</div>
+          <div *ngIf="loginForm.controls['password']?.errors?.pattern">La clave debe contener solo letras y números, máximo 20 caracteres.</div>
+        </div>
+      </div>
+      <div>
+        <a href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+      <button type="submit">Validar</button>
+    </form>
+  </div>
+  
